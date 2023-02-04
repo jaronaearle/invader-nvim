@@ -8,3 +8,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'folke/tokyonight.nvim'
 end)
+
+use 'ray-x/go.nvim'
+use 'ray-x/guihua.lua' -- recommanded if need floating window support
+
