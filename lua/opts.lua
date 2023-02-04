@@ -1,9 +1,10 @@
 local opt = vim.opt
+local cmd = vim.api.nvim_command
 
 -- Context
 opt.colorcolumn = '80'
 opt.number = true
-opt.relativenumber = true
+opt.relativenumber = false
 opt.scrolloff = 4
 opt.signcolumn = "yes"
 
@@ -14,6 +15,7 @@ opt.fileencoding = 'utf8'
 -- Theme
 opt.syntax = "ON"
 opt.termguicolors = true
+cmd('colorscheme habamax')
 
 -- Search
 opt.ignorecase = true
