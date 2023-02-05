@@ -1,5 +1,3 @@
--- [[ init.lua ]]
-
 vim.g.mapleader = ","
 vim.g.localleader = "\\"
 
@@ -8,8 +6,14 @@ require('opts')
 require('keys')
 require('plug')
 
--- require('lualine').setup {
---         options = {
--- 	theme = 'habamax'
--- 	}
--- }
+require('nvim-tree').setup{}
+
+require('lualine').setup{
+     options = {
+         icons_enabled = true,
+         theme = 'codedark'
+	}
+}
+
+require('nvim-autopairs').setup{}
+
