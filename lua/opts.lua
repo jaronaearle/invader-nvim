@@ -32,3 +32,11 @@ opt.tabstop = 4
 -- Splits
 opt.splitright = true
 opt.splitbelow = true
+
+-- Exp
+-- opt.completeopt = 'menuone, noselect'
+opt.hlsearch = false
+opt.mouse = 'a'
+opt.breakindent = true
+opt.undofile = true
+
