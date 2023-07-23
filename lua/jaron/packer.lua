@@ -4,7 +4,6 @@ return require("packer").startup(
     function(use)
         -- Packer can manage itself
         use "wbthomason/packer.nvim"
-
         -- LSP Zero
         use {
             "VonHeikemen/lsp-zero.nvim",
@@ -26,15 +25,20 @@ return require("packer").startup(
                 {"L3MON4D3/LuaSnip"} -- Required
             }
         }
-
-        -- Prettier
-        -- use {
-        --     "prettier/vim-prettier",
-        --     run = "yarn install --frozen-lockfile --production",
-        --     ft = {"javascript", "typescript", "css", "json", "yaml", "html"}
-        -- }
-        --
-
+        -- session mananager
+        use {
+            "rmagatti/auto-session",
+            config = function()
+                require("auto-session").setup {
+                    log_level = "error",
+                    auto_session_suppress_dirs = {"~/", "~/Projects", "~/Downloads", "/"}
+                }
+            end
+        }
+        -- tmux
+        use {"christoomey/vim-tmux-navigator"}
+        --    -- Debugger -- TODO config debugger
+        use {"mfussenegger/nvim-dap"}
         -- Nvim Tree
         use {
             "nvim-tree/nvim-tree.lua",
@@ -42,13 +46,11 @@ return require("packer").startup(
                 "nvim-tree/nvim-web-devicons" -- optional
             }
         }
-
         -- Treesitter
         use {
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate"
         }
-
         -- Telescope
         use {
             "nvim-telescope/telescope.nvim",
@@ -65,7 +67,6 @@ return require("packer").startup(
             "akinsho/toggleterm.nvim",
             tag = "*"
         }
-
         -- formatter
         use {"mhartington/formatter.nvim"}
 
@@ -79,25 +80,13 @@ return require("packer").startup(
         use("numToStr/Comment.nvim")
 
         -- autoclose tags
-        --use("m4xshen/autoclose.nvim")
+        use("m4xshen/autoclose.nvim")
 
         -- auto detect indentation
         use("nmac427/guess-indent.nvim")
 
-        -- Show git changes in gutter
-        -- use("airblade/vim-gitgutter")
-
         -- show inline git blame
         use("f-person/git-blame.nvim")
-
-        -- git support in vim
-        use("tpope/vim-fugitive")
-
-        -- line for showing open buffers in tabline
-        -- use {"akinsho/bufferline.nvim", tag = "*"}
-
-        -- util for closing buffers easily
-        -- use {"kazhala/close-buffers.nvim"}
 
         -- indent blankline
         use("lukas-reineke/indent-blankline.nvim")
@@ -105,18 +94,29 @@ return require("packer").startup(
         -- undo tree
         use("mbbill/undotree")
 
-        -- command palette
-        use "koenverburg/cmd-palette.nvim"
-
         -- add the dressing plugin for a nicer looking ui as shown in the demo video
         use "stevearc/dressing.nvim"
-
-        -- lsp diagnostics??
-        -- use {"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons"}
-
         -- These optional plugins should be loaded directly because of a bug in Packer lazy loading
         use "nvim-tree/nvim-web-devicons" -- OPTIONAL: for file icons
         use "lewis6991/gitsigns.nvim" -- OPTIONAL: for git status
         use "romgrk/barbar.nvim"
+        -- whichkey
+        use {
+            "folke/which-key.nvim",
+            config = function()
+                vim.o.timeout = true
+                vim.o.timeoutlen = 300
+            end
+        }
+        -- context aware hover
+        use {"lewis6991/hover.nvim"}
+
+        -- nvim test runner
+        use {
+            "klen/nvim-test",
+            config = function()
+                require("nvim-test").setup()
+            end
+        }
     end
 )
