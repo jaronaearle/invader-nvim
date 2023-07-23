@@ -58,10 +58,8 @@ return require("packer").startup(
         }
         -- required for telescope
         use("nvim-lua/plenary.nvim")
-
         -- Kanagawa Theme
         use "rebelot/kanagawa.nvim"
-
         -- toggle terminal
         use {
             "akinsho/toggleterm.nvim",
@@ -69,31 +67,22 @@ return require("packer").startup(
         }
         -- formatter
         use {"mhartington/formatter.nvim"}
-
         -- copilot
         use("zbirenbaum/copilot.lua")
-
         -- lualine
         use {"nvim-lualine/lualine.nvim"}
-
         -- toggle comments
         use("numToStr/Comment.nvim")
-
         -- autoclose tags
         use("m4xshen/autoclose.nvim")
-
         -- auto detect indentation
         use("nmac427/guess-indent.nvim")
-
         -- show inline git blame
         use("f-person/git-blame.nvim")
-
         -- indent blankline
         use("lukas-reineke/indent-blankline.nvim")
-
         -- undo tree
         use("mbbill/undotree")
-
         -- add the dressing plugin for a nicer looking ui as shown in the demo video
         use "stevearc/dressing.nvim"
         -- These optional plugins should be loaded directly because of a bug in Packer lazy loading
@@ -110,13 +99,32 @@ return require("packer").startup(
         }
         -- context aware hover
         use {"lewis6991/hover.nvim"}
-
         -- nvim test runner
         use {
             "klen/nvim-test",
             config = function()
                 require("nvim-test").setup()
             end
+        }
+        use {
+            "cameron-wags/rainbow_csv.nvim",
+            config = function()
+                require "rainbow_csv".setup()
+            end,
+            -- optional lazy-loading below
+            module = {
+                "rainbow_csv",
+                "rainbow_csv.fns"
+            },
+            ft = {
+                "csv",
+                "tsv",
+                "csv_semicolon",
+                "csv_whitespace",
+                "csv_pipe",
+                "rfc_csv",
+                "rfc_semicolon"
+            }
         }
     end
 )
